@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chandan Hub: Study Smarter. Build Skills.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--bg:#f4f7fb;--ink:#14182b;--mute:#555d7a;--brand:#2b3a8f;--sun:#f2a900;--teal:#0f8b8d;--panel:#fff;--line:#d8deec;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10142a;--ink:#eef1fb;--mute:#a4abc8;--brand:#8e9cff;--panel:#1a2040;--line:#2c3563}}
+:root[data-theme="dark"]{--bg:#10142a;--ink:#eef1fb;--mute:#a4abc8;--brand:#8e9cff;--panel:#1a2040;--line:#2c3563}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Source Sans 3",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;line-height:1.1;margin:0}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px;flex-wrap:wrap}
+.logo{font:800 22px "Bricolage Grotesque",sans-serif;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--sun)}
+nav div{display:flex;flex-wrap:wrap;gap:6px 14px;font-weight:600;font-size:15px}
+nav a{text-decoration:none;color:var(--mute)}
+nav a:hover{color:var(--brand)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;padding:32px 0 56px}
+.hero h1{font-size:clamp(36px,6vw,60px);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--mute);max-width:46ch;margin:16px 0 0}
+.timer{background:var(--brand);color:#fff;border-radius:28px 28px 28px 6px;padding:28px;text-align:center}
+.timer h2{font-size:18px;font-weight:600;opacity:.85}
+.clock{font:800 clamp(56px,12vw,84px) "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums;margin:8px 0 4px}
+.modes,.ctrl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+button{font:600 16px "Source Sans 3",sans-serif;border:0;border-radius:999px;padding:10px 20px;cursor:pointer;background:var(--sun);color:#14182b}
+button.alt{background:rgba(255,255,255,.18);color:#fff}
+button.alt[aria-pressed="true"]{background:#fff;color:var(--brand)}
+.timer small{display:block;margin-top:14px;opacity:.85}
+section{padding:48px 0;border-top:1px solid var(--line)}
+section>.wrap>h2{font-size:clamp(28px,4.5vw,40px);margin-bottom:8px}
+.lead{color:var(--mute);margin:0 0 24px;max-width:56ch}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tip{background:var(--panel);border-left:6px solid var(--teal);padding:20px 24px;border-radius:4px 20px 20px 4px}
+.tip h3{font-size:22px;margin-bottom:8px}
+.tip ul{margin:0;padding-left:20px}
+.tip li{margin:6px 0}
+.skills{display:grid;grid-template-columns:1fr 1.3fr;gap:32px}
+.add{display:flex;gap:8px;margin-bottom:16px}
+input{flex:1;min-width:0;font:inherit;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink)}
+.sk{background:var(--panel);padding:14px 18px;border-radius:16px;margin-bottom:10px}
+.sk div{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:600}
+.bar{height:10px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .3s}
+.sk button{padding:4px 12px;font-size:14px}
+.sk .x{background:transparent;color:var(--mute)}
+.ideas{list-style:none;padding:0;margin:0}
+.ideas li{padding:12px 0;border-bottom:1px dashed var(--line)}
+.ideas b{color:var(--brand)}
+.boost{background:var(--sun);color:#14182b;border-radius:28px;padding:32px;text-align:center}
+.boost p{font:600 clamp(22px,4vw,32px)/1.25 "Bricolage Grotesque",sans-serif;margin:0 0 16px}
+.boost button{background:#14182b;color:#fff}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#25d366;color:#062b16;font-weight:600;text-decoration:none;padding:12px 20px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:9}
+.wa:hover{color:#062b16;filter:brightness(1.08)}
+footer{padding:32px 0;color:var(--mute);text-align:center;border-top:1px solid var(--line)}
+.m5{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.m5 label{display:flex;align-items:center;gap:12px;background:var(--panel);padding:12px 16px;border-radius:14px;font:600 20px "Bricolage Grotesque",sans-serif;cursor:pointer}
+.m5 input{flex:none;width:22px;height:22px;accent-color:var(--teal)}
+.m5 input:checked+span{text-decoration:line-through;opacity:.6}
+.m5+.boost{margin-top:32px}
+#fq{width:100%}
+.ob{background:var(--bg);padding:12px 14px;border-radius:12px;white-space:pre-wrap;font-weight:600}
+.flist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:16px}
+.f{background:var(--panel);padding:12px 16px;border-radius:14px 14px 14px 4px;display:flex;flex-direction:column;gap:4px}
+.f b{font-family:"Bricolage Grotesque",sans-serif;color:var(--brand)}
+.f code{font:600 14px/1.4 ui-monospace,Consolas,monospace;word-break:break-word}
+.f small{color:var(--mute)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.calc{background:var(--panel);padding:24px;border-radius:24px 24px 24px 6px;display:flex;flex-direction:column;gap:12px}
+.calc label{display:flex;flex-direction:column;gap:4px;font-weight:600}
+select{font:inherit;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.out div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.out div:last-child{font-size:20px;color:var(--teal)}
+.pr{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pr input{flex:none;width:96px}
+.pr b{color:var(--teal);font-size:20px}
+@media(max-width:720px){.hero,.skills,.cg{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+.cd{background:var(--panel);padding:24px;border-radius:24px 24px 24px 6px;display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.cg .cd{margin-top:0}
+.cd h3{font-size:22px}.cd p{margin:0;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{padding:4px 12px;font-size:14px;background:transparent;border:2px solid var(--line);color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+textarea{font:inherit;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:96px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row a,a.btn{font:600 16px "Source Sans 3",sans-serif;background:var(--sun);color:#14182b;border-radius:999px;padding:10px 20px;text-decoration:none}
+.pgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.pgs div{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.pgs img{width:100%;border:1px solid var(--line);border-radius:8px}
+#hc{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:none}
+.ttw{overflow-x:auto}
+.tt{border-collapse:collapse;min-width:760px;width:100%}
+.tt th{font:800 15px "Bricolage Grotesque",sans-serif;padding:6px;text-align:left}
+.tt td{padding:3px}
+.tt input{width:100%;padding:6px 8px;font-size:15px;border-radius:8px}
+.tt td:first-child input{font-weight:600;min-width:96px}
+@media print{body.pt>*{display:none!important}body.pt>#timetable{display:block!important;border:0}.noprint{display:none!important}.tt input{border:1px solid #999;background:#fff;color:#000}}
+.stars{display:flex;gap:6px}
+.stars button{font-size:26px;line-height:1;padding:4px 8px;background:transparent;color:var(--mute);border:2px solid var(--line)}
+.stars button[aria-pressed="true"]{color:#14182b;background:var(--sun);border-color:var(--sun)}
+.tk{overflow:hidden;white-space:nowrap;padding:9px 0;font:600 15px "Source Sans 3",sans-serif}
+.tk.a{background:var(--teal);color:#fff}
+.tk div{display:inline-flex;animation:tks 38s linear infinite;will-change:transform}
+.tk:hover div{animation-play-state:paused}
+.tk span{padding-right:3em}
+@keyframes tks{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.tk{overflow-x:auto}.tk div{animation:none}.tk div span[aria-hidden]{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#top">Chandan<span>Hub</span></a>
+<div><a href="#top">Home</a><a href="#study">Study</a><a href="#strategy">90% Plan</a><a href="#commerce">Commerce</a><a href="#formulas">Formulas</a><a href="#calc">Calculators</a><a href="#skills">Skills</a><a href="#aitools">AI Tools</a><a href="#tools">Tools</a><a href="#timetable">Timetable</a><a href="#boost">Daily Boost</a><a href="#feedback">Feedback</a></div></nav>
+<div class="tk a" role="marquee" aria-label="📢 CHANDAN HUB • Study Smarter • Build Skills • Commerce • AI Tools • Calculators • Keep Learning 🚀"><div><span>📢 CHANDAN HUB • Study Smarter • Build Skills • Commerce • AI Tools • Calculators • Keep Learning 🚀</span><span aria-hidden="true">📢 CHANDAN HUB • Study Smarter • Build Skills • Commerce • AI Tools • Calculators • Keep Learning 🚀</span><span aria-hidden="true">📢 CHANDAN HUB • Study Smarter • Build Skills • Commerce • AI Tools • Calculators • Keep Learning 🚀</span><span aria-hidden="true">📢 CHANDAN HUB • Study Smarter • Build Skills • Commerce • AI Tools • Calculators • Keep Learning 🚀</span></div></div>
+<header class="hero" id="top">
+<div><h1>Study Smarter. Build Skills. Become Future Ready.</h1>
+<p>A free digital hub for students to study, practice, calculate and build useful skills.</p></div>
+<div class="timer" aria-label="Focus timer">
+<h2>Start a focus session</h2>
+<div class="clock" id="clock" role="timer" aria-live="off">25:00</div>
+<div class="modes" role="group" aria-label="Session length">
+<button class="alt" data-m="25" aria-pressed="true">25 min focus</button>
+<button class="alt" data-m="5" aria-pressed="false">5 min break</button>
+<button class="alt" data-m="50" aria-pressed="false">50 min deep work</button></div>
+<div class="ctrl"><button id="go">Start</button><button class="alt" id="rs">Reset</button></div>
+<small id="done">Sessions finished today: 0</small></div>
+</header>
+</div>
+
+<section id="study"><div class="wrap">
+<h2>Study Methods</h2>
+<p class="lead">Choose a subject and get practical methods you can use today.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="tip" id="tip" role="tabpanel"></div>
+</div></section>
+
+<section id="strategy"><div class="wrap">
+<h2>90%+ Exam Strategy</h2>
+<p class="lead">No plan can promise marks, but these habits stack the odds in your favour. Follow them in this order.</p>
+<div class="calc" style="max-width:520px;margin-bottom:24px"><h3>My exam countdown</h3>
+<label>Exam date<input id="ed" type="date"></label>
+<div class="ob" id="eo">Pick your exam date to see what to focus on today.</div></div>
+<div class="flist">
+<div class="f"><b>Know the paper</b><span>Study the syllabus, marking scheme and weightage first. Spend most time on high-weightage chapters.</span></div>
+<div class="f"><b>Textbook first</b><span>Finish the main textbook and its exercises before any guide or extra material.</span></div>
+<div class="f"><b>Active recall</b><span>Close the book and write or say what you remember. Re-reading feels easy but teaches less.</span></div>
+<div class="f"><b>Spaced revision</b><span>Revise on day 1, 3, 7 and 21. Short and frequent beats one long cram.</span></div>
+<div class="f"><b>Past papers</b><span>Solve the last 5 to 10 years' papers in exam time. Check with the marking scheme, not just the answer.</span></div>
+<div class="f"><b>Error notebook</b><span>Write each mistake with the correct method. Redo it after 3 days until it never repeats.</span></div>
+<div class="f"><b>Write for marks</b><span>Use headings, key terms, steps and neat diagrams. Marks are given for steps, not only the final answer.</span></div>
+<div class="f"><b>Exam day</b><span>Use the first 10 minutes to read and plan. Start with your strongest questions, watch time per mark, and keep 10 minutes to check.</span></div>
+<div class="f"><b>Body and mind</b><span>Sleep 7 hours, eat on time and take a short walk. A rested brain remembers more.</span></div>
+</div>
+</div></section>
+
+<section id="commerce"><div class="wrap">
+<h2>Commerce Corner</h2>
+<p class="lead">Key ideas from Accountancy, Business Studies and Economics at a glance.</p>
+<div class="cg">
+<div class="tip"><h3>Golden rules of accounting</h3><ul>
+<li><b>Personal:</b> debit the receiver, credit the giver.</li>
+<li><b>Real:</b> debit what comes in, credit what goes out.</li>
+<li><b>Nominal:</b> debit expenses and losses, credit incomes and gains.</li></ul></div>
+<div class="tip"><h3>Three subjects, three questions</h3><ul>
+<li><b>Accountancy:</b> how do we record money?</li>
+<li><b>Business Studies:</b> how is a business run?</li>
+<li><b>Economics:</b> how do choices shape markets?</li></ul></div>
+</div></div></section>
+
+<section id="formulas"><div class="wrap">
+<h2>Student Formula Library</h2>
+<p class="lead">Accounting, Economics, Excel, Tally, GST, Mathematics and useful AI shortcuts in one place.</p>
+<div class="tabs" id="ftabs" role="tablist"></div>
+<input id="fq" type="search" placeholder="Search formulas, e.g. ratio, VLOOKUP" aria-label="Search formulas">
+<div class="flist" id="fl"></div>
+</div></section>
+
+<section id="calc"><div class="wrap">
+<h2>Student Calculators</h2>
+<p class="lead">Quickly calculate GST, percentage, profit, loss, discount, interest and more.</p>
+<div class="cg">
+<div class="calc"><h3>GST calculator</h3>
+<label>Amount (₹)<input id="ga" type="number" inputmode="decimal" min="0"></label>
+<label>GST rate<select id="gr"><option value="0">0%</option><option value="3">3%</option><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></label>
+<label>Amount is<select id="gm"><option value="add">Without GST (add GST)</option><option value="rem">With GST (remove GST)</option></select></label>
+<div class="out" id="gout">Enter an amount to see the split.</div></div>
+<div class="calc"><h3>Percentage calculator</h3>
+<div class="pr"><input id="p1x" type="number" inputmode="decimal" aria-label="Percent"> % of <input id="p1y" type="number" inputmode="decimal" aria-label="Number"> = <b id="p1o">–</b></div>
+<div class="pr"><input id="p2x" type="number" inputmode="decimal" aria-label="Part"> is what % of <input id="p2y" type="number" inputmode="decimal" aria-label="Whole"> = <b id="p2o">–</b></div>
+<div class="pr">Change from <input id="p3x" type="number" inputmode="decimal" aria-label="Old value"> to <input id="p3y" type="number" inputmode="decimal" aria-label="New value"> = <b id="p3o">–</b></div>
+</div>
+<div class="calc"><h3>Profit and loss</h3>
+<label>Cost price (₹)<input id="pl1" type="number" inputmode="decimal" min="0"></label>
+<label>Selling price (₹)<input id="pl2" type="number" inputmode="decimal" min="0"></label>
+<div class="out" id="plo">Enter both prices.</div></div>
+<div class="calc"><h3>Discount</h3>
+<label>Marked price (₹)<input id="d1" type="number" inputmode="decimal" min="0"></label>
+<label>Discount (%)<input id="d2" type="number" inputmode="decimal" min="0"></label>
+<div class="out" id="do">Enter price and discount.</div></div>
+<div class="calc"><h3>Interest</h3>
+<label>Principal (₹)<input id="i1" type="number" inputmode="decimal" min="0"></label>
+<label>Rate (% per year)<input id="i2" type="number" inputmode="decimal" min="0"></label>
+<label>Time (years)<input id="i3" type="number" inputmode="decimal" min="0"></label>
+<div class="out" id="io">Enter all three values.</div></div></div>
+</div></section>
+
+<section id="skills"><div class="wrap skills">
+<div><h2>Skills Worth Building</h2>
+<p class="lead">Marks matter, but practical skills help you go further. Practice one useful skill every day.</p>
+<ul class="ideas">
+<li><b>Communication:</b> explain one concept aloud each day.</li>
+<li><b>Typing and digital basics:</b> forms, email, documents.</li>
+<li><b>Design:</b> make a poster or slide in Canva.</li>
+<li><b>Time management:</b> plan tomorrow before you sleep.</li>
+<li><b>English speaking:</b> read aloud for 10 minutes.</li></ul></div>
+<div><h2>My Skill Tracker</h2>
+<p class="lead">Add your skill and track your progress as you practice. Your progress is saved on this device.</p>
+<div class="add"><input id="sn" placeholder="Skill name, e.g. Typing" aria-label="Skill name" maxlength="40"><button id="sa">Add skill</button></div>
+<div id="sl"></div></div>
+</div></section>
+
+<section id="aitools"><div class="wrap">
+<h2>AI Tools</h2>
+<p class="lead">Build a clear prompt from role, task and format. Then add a shortcut from the Formula Library, like /STEP-BY-STEP.</p>
+<div class="calc" style="max-width:640px">
+<label>Role<input id="ar" placeholder="e.g. a Class 12 Accountancy teacher"></label>
+<label>Task<input id="at" placeholder="e.g. Explain depreciation with an example"></label>
+<label>Format<select id="af"><option>short bullet points</option><option>a table</option><option>step by step</option><option>a checklist</option></select></label>
+<div class="ob" id="ao"></div>
+<button id="ac">Copy prompt</button></div>
+<div class="cd" style="max-width:640px"><h3>Ask your doubt to AI</h3>
+<p>Type your doubt, pick a shortcut, then open it in an AI app. The question is filled in for you.</p>
+<div class="chips" id="dch"></div>
+<textarea id="dq" placeholder="e.g. What is the difference between depreciation and amortisation?" aria-label="Your doubt"></textarea>
+<div class="row"><button id="dc">Copy question</button><a id="dcl" href="#" target="_blank" rel="noopener">Ask in Claude</a><a id="dgp" href="#" target="_blank" rel="noopener">Ask in ChatGPT</a></div></div>
+</div></section>
+
+<section id="tools"><div class="wrap">
+<h2>Student Tools</h2>
+<p class="lead">Convert files and clean up your notes. Everything runs on your device and your files are not uploaded anywhere.</p>
+<div class="cg">
+<div class="cd"><h3>PDF to Images</h3><p>Every page of your PDF becomes a PNG picture.</p>
+<input id="pf" type="file" accept="application/pdf" aria-label="Choose PDF"><button id="p2i">Convert to images</button><div class="pgs" id="pgo"></div></div>
+<div class="cd"><h3>Images to PDF</h3><p>Pick one or more pictures. Each one becomes a page.</p>
+<input id="if" type="file" accept="image/*" multiple aria-label="Choose images"><button id="i2p">Make PDF</button><div id="ipo"></div></div>
+</div>
+<div class="cd"><h3>Image to Handwritten Notes</h3>
+<p>Turn a photo of notes or a textbook page into a clean pen-on-paper look.</p>
+<input id="hf" type="file" accept="image/*" aria-label="Choose image">
+<div class="row"><label>Ink strength <input id="hs" type="range" min="0" max="100" value="50"></label>
+<label>Pen <select id="hk"><option value="0">Blue</option><option value="1">Black</option><option value="2">Red</option></select></label>
+<label><input id="hl" type="checkbox" checked style="flex:none;width:auto"> Ruled paper</label></div>
+<canvas id="hc"></canvas><div class="row"><a class="btn" id="hd" href="#" download="handwritten-notes.png" style="display:none">Download PNG</a></div></div>
+</div></section>
+
+<section id="timetable"><div class="wrap">
+<h2>My Timetable</h2>
+<p class="lead noprint">Start from a template, then change any box. Your timetable is saved on this device.</p>
+<p class="noprint" style="margin:0 0 12px;padding:10px 14px;border-left:4px solid var(--sun);background:var(--panel);border-radius:8px">💡 <b>Tip:</b> You can change any subject and time to match your own routine. Just tap a box and type, or add a new row for extra subjects.</p>
+<div class="row noprint" style="margin-bottom:12px"><label>Template <select id="tsel"></select></label><button id="tar">Add row</button><button id="tcl" class="alt" style="background:var(--line);color:var(--ink)">Clear all</button><button id="tpr">Print / Save as PDF</button></div>
+<div class="ttw"><table class="tt" id="ttb"></table></div>
+</div></section>
+
+<section id="boost"><div class="wrap">
+<h2>Daily Student Boost</h2>
+<p class="lead">Start your day with five simple reminders to stay focused, consistent and confident.</p>
+<ul class="m5" id="m5"></ul>
+<div class="boost"><p id="q"></p><button id="nq">Show another</button></div>
+</div></section>
+
+<section id="feedback"><div class="wrap">
+<h2>Your Feedback</h2>
+<p class="lead">Tell me what helped you and what I should improve. Your message opens in WhatsApp and reaches me directly.</p>
+<div class="cd" style="max-width:640px;margin-top:0">
+<label style="font-weight:600">How was your experience?</label>
+<div class="stars" id="fst" role="group" aria-label="Rating out of 5"></div>
+<input id="fn" placeholder="Your name (optional)" aria-label="Your name" maxlength="40">
+<textarea id="fm" placeholder="Write your feedback or suggestion here" aria-label="Your feedback"></textarea>
+<div class="row"><a id="fsend" href="#" target="_blank" rel="noopener">Send on WhatsApp</a><small id="fh" style="color:var(--mute)"></small></div></div>
+</div></section>
+
+<a class="wa" href="https://wa.me/918280775257?text=Hi%20Chandan%2C%20I%20found%20you%20on%20Chandan%20Hub." target="_blank" rel="noopener" aria-label="Chat with Chandan on WhatsApp">WhatsApp me</a>
+<footer><div class="wrap">Made by Chandan • Brahmapur, Odisha • Keep learning.<br><a href="https://wa.me/918280775257?text=Hi%20Chandan%2C%20I%20found%20you%20on%20Chandan%20Hub." target="_blank" rel="noopener">Contact on WhatsApp: +91 82807 75257</a></div></footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+/* Timer */
+var secs=1500,left=1500,t=null,fin=0;
+function draw(){var m=Math.floor(left/60),s=left%60;$("clock").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;document.title=t?$("clock").textContent+" | Chandan Hub":"Chandan Hub: Study Smarter. Build Skills."}
+function stop(){clearInterval(t);t=null;$("go").textContent="Start"}
+document.querySelectorAll(".modes button").forEach(function(b){b.onclick=function(){
+document.querySelectorAll(".modes button").forEach(function(x){x.setAttribute("aria-pressed","false")});
+b.setAttribute("aria-pressed","true");stop();secs=left=+b.dataset.m*60;draw()}});
+$("go").onclick=function(){
+if(t){stop();draw();return}
+fin=Date.now()+left*1000;$("go").textContent="Pause";
+t=setInterval(function(){left=Math.max(0,Math.round((fin-Date.now())/1000));draw();
+if(left<=0){stop();draw();var n=ld("sessions",0)+1;sv("sessions",n);$("done").textContent="Sessions finished today: "+n+". Take a breath."}},250)};
+$("rs").onclick=function(){stop();left=secs;draw()};
+var today=new Date().toDateString();
+if(ld("day","")!==today){sv("day",today);sv("sessions",0)}
+$("done").textContent="Sessions finished today: "+ld("sessions",0);
+
+/* Study tips */
+var tips={
+"Accountancy":["Learn the golden rules, then journalise 5 transactions daily.","Practise trial balance and final accounts on paper, not just by reading.","Keep a one-page formula and format sheet for revision."],
+"Business Studies":["Make a table for each concept: meaning, features, example.","Link every chapter to a real business you know.","In case studies, write the keyword first, then the reason."],
+"Economics":["Draw the demand and supply curves yourself, then shift them.","Learn each term with one everyday example.","Revise formulas and graphs together."],
+"Mathematics":["Solve before you read the solution: 5 problems a day.","Keep an error notebook and redo each mistake after 3 days.","Derive each formula once so you remember why it works."],
+"English":["Read aloud for 10 minutes every day.","Learn new words in sentences, not lists.","Write five lines in a diary each night."],
+"Computer":["Type out every program yourself, never just read it.","Practise formulas and shortcuts in Excel and Tally.","Break each problem into steps before you start."],
+"Exams":["Study in 25-minute blocks with 5-minute breaks.","Solve previous year papers under a timer.","Revise on day 1, 3, 7 and 21."]};
+var tb=$("tabs");
+Object.keys(tips).forEach(function(k,i){var b=document.createElement("button");b.textContent=k;b.setAttribute("role","tab");
+b.onclick=function(){show(k)};tb.appendChild(b)});
+function show(k){
+tb.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-selected",b.textContent===k)});
+$("tip").innerHTML="<h3>"+k+"</h3><ul>"+tips[k].map(function(x){return"<li>"+x+"</li>"}).join("")+"</ul>"}
+show("Accountancy");
+
+/* Skill tracker */
+var sk=ld("skills",[{n:"Communication",p:20}]);
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function render(){
+$("sl").innerHTML=sk.length?sk.map(function(s,i){return'<div class="sk"><div><span>'+esc(s.n)+' ('+s.p+'%)</span><span><button data-u="'+i+'" aria-label="Add 10 percent to '+esc(s.n)+'">+10%</button> <button class="x" data-d="'+i+'" aria-label="Remove '+esc(s.n)+'">Remove</button></span></div><div class="bar"><i style="width:'+s.p+'%"></i></div></div>'}).join(""):"<p class='lead'>No skills yet. Add your first one above.</p>";
+sv("skills",sk)}
+$("sl").onclick=function(e){var u=e.target.dataset.u,d=e.target.dataset.d;
+if(u!==undefined){sk[u].p=Math.min(100,sk[u].p+10);render()}
+if(d!==undefined){sk.splice(d,1);render()}};
+function add(){var v=$("sn").value.trim();if(!v)return;sk.push({n:v,p:0});$("sn").value="";render()}
+$("sa").onclick=add;$("sn").onkeydown=function(e){if(e.key==="Enter")add()};
+render();
+
+/* Formula library */
+var FD={
+"Accounting":`Accounting Equation|Assets = Liabilities + Equity
+Gross Profit|Sales − Cost of Goods Sold
+Net Profit|Revenue − Total Expenses
+Gross Profit Margin|(Gross Profit ÷ Sales) × 100
+Net Profit Margin|(Net Profit ÷ Sales) × 100
+Current Ratio|Current Assets ÷ Current Liabilities
+Quick Ratio|(Current Assets − Inventory) ÷ Current Liabilities
+Working Capital|Current Assets − Current Liabilities
+Debt-to-Equity Ratio|Total Liabilities ÷ Equity
+Debt Ratio|Total Liabilities ÷ Total Assets
+Return on Assets (ROA)|(Net Profit ÷ Avg Total Assets) × 100
+Return on Equity (ROE)|(Net Profit ÷ Avg Equity) × 100
+Inventory Turnover|COGS ÷ Avg Inventory
+Receivables Turnover|Credit Sales ÷ Avg Accounts Receivable
+Avg Collection Period|365 ÷ Receivables Turnover
+Payables Turnover|Credit Purchases ÷ Avg Accounts Payable
+Days Payable Outstanding|365 ÷ Payables Turnover
+Earnings Per Share (EPS)|(Net Profit − Preference Dividends) ÷ Ordinary Shares
+Break-Even Point (Units)|Fixed Costs ÷ Contribution per Unit
+Contribution per Unit|Selling Price − Variable Cost per Unit
+Contribution Margin|(Contribution ÷ Sales) × 100
+Margin of Safety|Actual Sales − Break-Even Sales
+Depreciation (Straight Line)|(Cost − Residual Value) ÷ Useful Life
+Carrying Amount|Cost − Accumulated Depreciation
+Markup|(Profit ÷ Cost) × 100
+Return on Investment (ROI)|(Net Profit ÷ Investment) × 100
+Asset Turnover|Sales ÷ Avg Total Assets
+Operating Profit|Gross Profit − Operating Expenses
+Cash Conversion Cycle|Inventory Days + Receivable Days − Payable Days
+Present Value|Future Cash Flow ÷ (1 + Interest Rate)^n`,
+"Economics":`GDP (expenditure)|C + I + G + (X − M)
+Total Revenue|Price × Quantity
+Average Cost|Total Cost ÷ Output
+Marginal Cost|Change in Total Cost ÷ Change in Output
+Marginal Revenue|Change in Total Revenue ÷ Change in Output
+Price Elasticity of Demand|% change in Quantity ÷ % change in Price
+Inflation Rate|((CPI new − CPI old) ÷ CPI old) × 100
+Per Capita Income|National Income ÷ Population
+MPC|Change in Consumption ÷ Change in Income
+MPS|1 − MPC
+Investment Multiplier|1 ÷ (1 − MPC)
+Average Propensity to Consume|Consumption ÷ Income`,
+"Excel":`SUM|=SUM(B2:B6)
+AVERAGE|=AVERAGE(B2:B6)
+IF|=IF(B2>=50,"Pass","Fail")
+COUNT|=COUNT(B2:B6)
+COUNTA|=COUNTA(B2:B6)
+MAX|=MAX(B2:B6)
+MIN|=MIN(B2:B6)
+VLOOKUP|=VLOOKUP(B2,A2:C6,3,FALSE)
+XLOOKUP|=XLOOKUP(B2,A2:A6,B2:B6,"Not Found")
+CONCAT|=CONCAT(A2," ",B2)
+LEFT|=LEFT(B2,3)
+RIGHT|=RIGHT(B2,3)
+MID|=MID(B2,4,3)
+LEN|=LEN(B2)
+TRIM|=TRIM(B2)
+TEXT|=TEXT(B2,"dd-mm-yyyy")
+DATE|=DATE(B2,C2,D2)
+TODAY|=TODAY()
+NOW|=NOW()
+ROUND|=ROUND(B2,2)
+INDEX|=INDEX(A2:C6,3,2)
+MATCH|=MATCH(E2,A2:A6,0)
+SUMIF|=SUMIF(B2:B6,"East",C2:C6)
+SUMIFS|=SUMIFS(C2:C7,A2:A7,"East",B2:B7,"Laptop")
+COUNTIF|=COUNTIF(B2:B6,"East")
+COUNTIFS|=COUNTIFS(B2:B6,"East",C2:C6,">3000")
+AVERAGEIF|=AVERAGEIF(B2:B6,"East",C2:C6)
+IFERROR|=IFERROR(A2/B2,"N/A")
+FILTER|=FILTER(A2:C6,B2:B6="East")
+UNIQUE|=UNIQUE(A2:A10)
+SORT|=SORT(A2:C6,3,-1)
+VLOOKUP (approx)|=VLOOKUP(B2,A2:B6,2,TRUE)
+CHOOSE|=CHOOSE(2,"Low","Mid","High")
+OFFSET|=OFFSET(A1,1,1,3,1)
+INDIRECT|=INDIRECT("A2")
+SUBSTITUTE|=SUBSTITUTE(B2,"-","/")
+EXACT|=EXACT(B2,C2)
+ROW|=ROW(B2)
+COLUMN|=COLUMN(B2)
+ABS|=ABS(B2)
+SQRT|=SQRT(B2)
+MOD|=MOD(B2,3)
+RANDBETWEEN|=RANDBETWEEN(1,100)
+Date plus 7 days|=TODAY()+7
+TEXTJOIN|=TEXTJOIN(", ",TRUE,A2:A5)
+XOR|=XOR(B2>50,C2>50)
+Number as text|=TEXT(B2,"0.00")`,
+"Mathematics":`Rule: a>0, a≠1, m,n>0|log_a m = x ⇔ a^x = m
+Product Rule|log_a(mn) = log_a m + log_a n|log10(100×10) = 2 + 1 = 3
+Quotient Rule|log_a(m/n) = log_a m − log_a n|log10(100/10) = 2 − 1 = 1
+Power Rule|log_a(m^n) = n log_a m|log10(10^3) = 3×1 = 3
+Base Change Rule|log_a m = 1 ÷ log_m a|log2 8 = 1/log8 2 = 1/(1/3) = 3
+Log of 1|log_a 1 = 0|log10 1 = 0
+Log of the Base|log_a a = 1|log10 10 = 1
+Common mistake|log_a(mn) ≠ log_a m × log_a n|It is log_a m + log_a n
+(a + b)²|a² + 2ab + b²
+(a − b)²|a² − 2ab + b²
+a² − b²|(a + b)(a − b)
+Simple Interest|(P × R × T) ÷ 100
+Compound Interest|A = P(1 + R/100)^T, CI = A − P
+Profit %|(Profit ÷ Cost Price) × 100
+Loss %|(Loss ÷ Cost Price) × 100
+Discount|Marked Price − Selling Price
+Average|Sum of values ÷ Number of values`,
+"Tally":`Payment voucher|F5
+Receipt voucher|F6
+Journal voucher|F7
+Sales voucher|F8
+Purchase voucher|F9
+Contra voucher|F4
+Credit note|Ctrl + F8
+Debit note|Ctrl + F9
+Change date|F2
+Change period|Alt + F2
+Configure|F12
+Create master|Alt + C
+Delete|Alt + D
+Accept screen|Ctrl + A
+Quit or cancel|Ctrl + Q
+Export|Alt + E
+Print|Alt + P`,
+"GST":`GST Amount|Price × GST Rate ÷ 100
+Price with GST|Price + GST Amount
+Price before GST|Price with GST × 100 ÷ (100 + Rate)
+CGST and SGST|Each = GST Amount ÷ 2 (same state)
+IGST|CGST + SGST (inter-state)
+Net GST payable|Output GST − Input GST`,
+"AI Shortcuts":`How to use|Type the shortcut before your question, e.g. /TLDR then paste your text
+/EXPLAIN|Explain the concept simply
+/ELI5|Explain it in very simple language
+/TLDR|Summarize the text briefly
+/STEP-BY-STEP|Explain step by step
+/EXAMPLE|Give a practical example
+/QUIZ|Test me with questions
+/CHECK|Check my answer
+/REVISION|Create quick revision notes
+/FLASHCARDS|Create flashcards
+/CHECKLIST|Turn it into a checklist
+/COMPARE|Compare two or more things
+/TABLE|Present the information as a table
+/SIMPLIFY|Make the explanation easier
+/REWRITE|Rewrite in a better way`};
+var cur="Accounting",ft=$("ftabs");
+Object.keys(FD).forEach(function(k){var b=document.createElement("button");b.textContent=k;b.setAttribute("role","tab");
+b.onclick=function(){cur=k;fr()};ft.appendChild(b)});
+function fr(){
+ft.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-selected",b.textContent===cur)});
+var q=$("fq").value.toLowerCase();
+$("fl").innerHTML=FD[cur].split("\n").filter(function(r){return r.toLowerCase().indexOf(q)>-1}).map(function(r){var p=r.split("|");
+return'<div class="f"><b>'+esc(p[0])+'</b><code>'+esc(p[1])+'</code>'+(p[2]?'<small>'+esc(p[2])+'</small>':'')+'</div>'}).join("")||"<p class='lead'>No match. Try another word.</p>"}
+$("fq").oninput=fr;fr();
+
+/* Calculators */
+function n(i){return parseFloat($(i).value)}
+function f2(x){return x.toLocaleString("en-IN",{maximumFractionDigits:2})}
+function rw(l,v){return"<div><span>"+l+"</span><b>₹"+f2(v)+"</b></div>"}
+function pt(x){return isFinite(x)?f2(x)+"%":"–"}
+function calc(){
+var a=n("ga"),r=+$("gr").value;
+if(a>=0){var b=$("gm").value==="add"?a:a*100/(100+r),t=b*r/100;
+$("gout").innerHTML=rw("Price before GST",b)+rw("CGST ("+r/2+"%)",t/2)+rw("SGST ("+r/2+"%)",t/2)+rw("IGST if inter-state ("+r+"%)",t)+rw("Total with GST",b+t)}
+else $("gout").textContent="Enter an amount to see the split.";
+var x=n("p1x"),y=n("p1y");$("p1o").textContent=isFinite(x*y)?f2(x*y/100):"–";
+x=n("p2x");y=n("p2y");$("p2o").textContent=pt(x/y*100);
+x=n("p3x");y=n("p3y");$("p3o").textContent=pt((y-x)/x*100);more()}
+function more(){
+var c=n("pl1"),q=n("pl2");
+$("plo").innerHTML=(c>=0&&q>=0)?(q>=c?rw("Profit",q-c)+(c>0?"<div><span>Profit %</span><b>"+pt((q-c)/c*100)+"</b></div>":""):rw("Loss",c-q)+"<div><span>Loss %</span><b>"+pt((c-q)/c*100)+"</b></div>"):"Enter both prices.";
+var m=n("d1"),d=n("d2");
+$("do").innerHTML=(m>=0&&d>=0)?rw("You save",m*d/100)+rw("Final price",m-m*d/100):"Enter price and discount.";
+var p=n("i1"),r=n("i2"),t=n("i3");
+if(p>=0&&r>=0&&t>=0){var si=p*r*t/100,ci=p*Math.pow(1+r/100,t)-p;$("io").innerHTML=rw("Simple interest",si)+rw("Simple amount",p+si)+rw("Compound interest (yearly)",ci)+rw("Compound amount",p+ci)}else $("io").textContent="Enter all three values."}
+document.querySelectorAll(".calc input,.calc select").forEach(function(e){e.addEventListener("input",calc);e.addEventListener("change",calc)});
+
+/* Exam countdown */
+function ex(){var v=$("ed").value,m;
+if(!v){$("eo").textContent="Pick your exam date to see what to focus on today.";return}
+var d=Math.ceil((new Date(v+"T00:00:00")-new Date(new Date().toDateString()))/864e5);
+if(d<0)m="This exam date has passed. Pick the next one.";
+else if(d===0)m="Exam day. Read the paper for 10 minutes, then start with your strongest questions.";
+else m=d+" days left. "+(d>60?"Learn phase: finish the syllabus and make one-page notes for each chapter.":d>30?"Practice phase: solve one past paper every week and fix mistakes in your error notebook.":d>7?"Revision phase: revise each chapter twice and attempt a timed paper every 3 days.":"Final week: revise formulas and your error notebook, and sleep on time.");
+$("eo").textContent=m}
+$("ed").value=ld("exam","");ex();
+$("ed").onchange=function(){sv("exam",$("ed").value);ex()};
+
+/* Prompt builder */
+function pb(){$("ao").textContent="ROLE: "+($("ar").value||"…")+"\nTASK: "+($("at").value||"…")+"\nFORMAT: "+$("af").value}
+$("ar").oninput=pb;$("at").oninput=pb;$("af").onchange=pb;pb();
+$("ac").onclick=function(){var b=$("ac");try{navigator.clipboard.writeText($("ao").textContent);b.textContent="Copied"}catch(e){b.textContent="Select the text above and copy"}setTimeout(function(){b.textContent="Copy prompt"},1800)};
+
+/* Daily boost */
+var M5=["I will improve today.","I will stay focused on my goals.","I will learn something new today.","I will stay consistent, even when it is difficult.","I will make today's study count."],md=ld("m5",{d:"",x:[]});
+if(md.d!==today)md={d:today,x:[]};
+$("m5").innerHTML=M5.map(function(s,i){return'<li><label><input type="checkbox" data-i="'+i+'"'+(md.x.indexOf(i)>-1?" checked":"")+'><span>'+s+'</span></label></li>'}).join("");
+$("m5").onchange=function(e){var i=+e.target.dataset.i,k=md.x.indexOf(i);if(k>-1)md.x.splice(k,1);else md.x.push(i);sv("m5",md)};
+var qs=["Small steps every day beat big plans you never start.","You don't need to be perfect. You need to be consistent.","Today's 25 minutes is tomorrow's confidence.","Confused is just the step before clear.","Compare yourself to who you were last week.","Marks open doors. Skills keep them open.","Ask one more question than you did yesterday.","A hard chapter is just an easy one you haven't understood yet.","Start before you feel ready.","Learn it twice: once to know it, once to teach it."];
+var qi=Math.floor(Date.now()/864e5)%qs.length;
+$("q").textContent=qs[qi];
+$("nq").onclick=function(){qi=(qi+1)%qs.length;$("q").textContent=qs[qi]};
+/* Ask AI */
+var sh=FD["AI Shortcuts"].split("\n").slice(1).map(function(r){return r.split("|")[0]}),pick="";
+$("dch").innerHTML=sh.map(function(s){return'<button type="button" aria-pressed="false">'+s+'</button>'}).join("");
+function dl(){var q=(pick?pick+" ":"")+$("dq").value.trim(),e=encodeURIComponent(q);$("dcl").href="https://claude.ai/new?q="+e;$("dgp").href="https://chatgpt.com/?q="+e;return q}
+$("dch").onclick=function(e){var b=e.target.closest("button");if(!b)return;var on=b.getAttribute("aria-pressed")==="true";
+$("dch").querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed","false")});
+if(!on)b.setAttribute("aria-pressed","true");pick=on?"":b.textContent;dl()};
+$("dq").oninput=dl;dl();
+$("dc").onclick=function(){var b=$("dc");try{navigator.clipboard.writeText(dl());b.textContent="Copied"}catch(e){b.textContent="Select and copy the text"}setTimeout(function(){b.textContent="Copy question"},1800)};
+[$("dcl"),$("dgp")].forEach(function(a){a.addEventListener("click",function(e){if(!$("dq").value.trim()){e.preventDefault();$("dq").focus()}else dl()})});
+
+/* PDF to images */
+var PJ="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf";
+function lp(cb){if(window.pdfjsLib)return cb();var s=document.createElement("script");s.src=PJ+".min.js";
+s.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc=PJ+".worker.min.js";cb()};
+s.onerror=function(){$("pgo").textContent="Could not load the PDF engine. Check your internet."};document.head.appendChild(s)}
+$("p2i").onclick=function(){var f=$("pf").files[0];if(!f){$("pgo").textContent="Choose a PDF first.";return}
+$("pgo").textContent="Converting…";
+lp(function(){f.arrayBuffer().then(function(b){return pdfjsLib.getDocument({data:b}).promise}).then(async function(pdf){
+$("pgo").innerHTML="";
+for(var i=1;i<=pdf.numPages;i++){var pg=await pdf.getPage(i),vp=pg.getViewport({scale:2}),c=document.createElement("canvas");
+c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+var u=c.toDataURL("image/png"),d=document.createElement("div");
+d.innerHTML='<img alt="Page '+i+'" src="'+u+'"><a href="'+u+'" download="page-'+i+'.png">Download page '+i+'</a>';$("pgo").appendChild(d)}
+}).catch(function(){$("pgo").textContent="This PDF could not be read. It may be locked or damaged."})})};
+
+/* Images to PDF */
+function li(f){return new Promise(function(r,j){var im=new Image();im.onload=function(){r(im)};im.onerror=j;im.src=URL.createObjectURL(f)})}
+function mkpdf(imgs){var parts=[],len=0,off=[];
+function add(x){var u=typeof x==="string"?new TextEncoder().encode(x):x;parts.push(u);len+=u.length}
+function obj(n,dict,data){off[n]=len;add(n+" 0 obj\n"+dict);if(data){add("\nstream\n");add(data);add("\nendstream")}add("\nendobj\n")}
+add("%PDF-1.4\n");var k=imgs.length;
+obj(1,"<</Type/Catalog/Pages 2 0 R>>");
+obj(2,"<</Type/Pages/Kids["+imgs.map(function(_,i){return(3+i*3)+" 0 R"}).join(" ")+"]/Count "+k+">>");
+imgs.forEach(function(im,i){var p=3+i*3,s=Math.min(555/im.w,802/im.h),w=im.w*s,h=im.h*s,cs="q "+w.toFixed(2)+" 0 0 "+h.toFixed(2)+" "+((595-w)/2).toFixed(2)+" "+((842-h)/2).toFixed(2)+" cm /I Do Q";
+obj(p,"<</Type/Page/Parent 2 0 R/MediaBox[0 0 595 842]/Resources<</XObject<</I "+(p+2)+" 0 R>>>>/Contents "+(p+1)+" 0 R>>");
+obj(p+1,"<</Length "+cs.length+">>",cs);
+obj(p+2,"<</Type/XObject/Subtype/Image/Width "+im.w+"/Height "+im.h+"/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length "+im.d.length+">>",im.d)});
+var xr=len,n=3+k*3;add("xref\n0 "+n+"\n0000000000 65535 f \n");
+for(var i=1;i<n;i++)add(("0000000000"+off[i]).slice(-10)+" 00000 n \n");
+add("trailer\n<</Size "+n+"/Root 1 0 R>>\nstartxref\n"+xr+"\n%%EOF");
+return new Blob(parts,{type:"application/pdf"})}
+$("i2p").onclick=async function(){var fs=$("if").files;if(!fs.length){$("ipo").textContent="Choose at least one image.";return}
+$("ipo").textContent="Making PDF…";var out=[];
+try{for(var i=0;i<fs.length;i++){var im=await li(fs[i]),sc=Math.min(1,1800/Math.max(im.width,im.height)),c=document.createElement("canvas");
+c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);
+var b=atob(c.toDataURL("image/jpeg",.9).split(",")[1]),u=new Uint8Array(b.length);for(var j=0;j<b.length;j++)u[j]=b.charCodeAt(j);
+out.push({w:c.width,h:c.height,d:u})}
+var url=URL.createObjectURL(mkpdf(out));$("ipo").innerHTML='<a class="btn" href="'+url+'" download="images.pdf">Download PDF ('+out.length+' page'+(out.length>1?"s":"")+')</a>'}
+catch(e){$("ipo").textContent="One of the files is not a valid image."}};
+
+/* Handwritten notes style */
+var hi=null;
+function hw(){if(!hi)return;var sc=Math.min(1,1600/Math.max(hi.width,hi.height)),w=Math.round(hi.width*sc),h=Math.round(hi.height*sc),c=$("hc");
+c.width=w;c.height=h;c.style.display="block";var x=c.getContext("2d");x.fillStyle="#fffdf5";x.fillRect(0,0,w,h);
+if($("hl").checked){x.lineWidth=1;x.strokeStyle="rgba(90,130,200,.35)";var g=Math.round(h/28);for(var y=g;y<h;y+=g){x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}
+x.strokeStyle="rgba(220,80,80,.5)";x.beginPath();x.moveTo(w*.08,0);x.lineTo(w*.08,h);x.stroke()}
+var t=document.createElement("canvas");t.width=w;t.height=h;var tx=t.getContext("2d");tx.drawImage(hi,0,0,w,h);
+var d=tx.getImageData(0,0,w,h),p=d.data,hiV=250-$("hs").value,lo=40,col=[[20,40,140],[25,25,25],[150,20,30]][$("hk").value];
+for(var i=0;i<p.length;i+=4){var gr=.3*p[i]+.59*p[i+1]+.11*p[i+2],a=Math.min(1,Math.max(0,(hiV-gr)/(hiV-lo)));a=a*a*(3-2*a);
+p[i]=255-(255-col[0])*a;p[i+1]=255-(255-col[1])*a;p[i+2]=255-(255-col[2])*a;p[i+3]=255}
+tx.putImageData(d,0,0);x.globalCompositeOperation="multiply";x.drawImage(t,0,0);
+$("hd").href=c.toDataURL("image/png");$("hd").style.display="inline-block"}
+$("hf").onchange=function(){var f=this.files[0];if(f)li(f).then(function(im){hi=im;hw()})};
+["hs","hk","hl"].forEach(function(i){$(i).oninput=hw;$(i).onchange=hw});
+
+/* Timetable */
+var DAYS=["Time","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+var TT={
+"School Student":{s:["7:00-8:00","8:00-9:00","9:00-10:00*","4:00-5:00","5:00-6:00","6:30-7:30","8:00-9:00"],j:["Mathematics","Science","English","Social Science","Hindi / Odia","Computer"]},
+"Exam Prep":{s:["6:00-8:00","8:00-9:00*","9:00-12:00","12:00-1:00*","3:00-5:00","6:00-8:00","9:00-10:00"],j:["Past paper","Revise formulas","Weak topics","Mock test","Error notebook","New chapter"]},
+"College + Skills":{s:["8:00-10:00","10:00-1:00","1:00-2:00*","2:00-4:00","4:00-6:00","7:00-9:00"],j:["Classes","Self study","Typing / Excel","Coding practice","Canva design","English speaking"]},
+"Blank":{s:["","","","","",""],j:[""]}};
+var tt=ld("tt",null),ts=$("tsel");
+Object.keys(TT).forEach(function(k){var o=document.createElement("option");o.textContent=k;ts.appendChild(o)});
+function mk(k){var T=TT[k];return T.s.map(function(s,r){var br=s.slice(-1)==="*";
+return[br?s.slice(0,-1):s].concat(DAYS.slice(1).map(function(_,d){return br?"Break":(k==="Blank"?"":(d===6?"Revision":T.j[(r+d)%T.j.length]))}))})}
+if(!tt)tt=mk("School Student");
+function rt(){$("ttb").innerHTML="<tr>"+DAYS.map(function(d){return"<th>"+d+"</th>"}).join("")+"</tr>"+
+tt.map(function(r,i){return"<tr>"+r.map(function(c,j){return'<td><input data-r="'+i+'" data-c="'+j+'" value="'+esc(c).replace(/"/g,"&quot;")+'" aria-label="'+DAYS[j]+" row "+(i+1)+'"></td>'}).join("")+"</tr>"}).join("")}
+$("ttb").oninput=function(e){var t=e.target;tt[+t.dataset.r][+t.dataset.c]=t.value;sv("tt",tt)};
+ts.onchange=function(){tt=mk(ts.value);sv("tt",tt);rt()};
+$("tar").onclick=function(){tt.push(DAYS.map(function(){return""}));sv("tt",tt);rt()};
+$("tcl").onclick=function(){tt=mk("Blank");sv("tt",tt);rt()};
+$("tpr").onclick=function(){document.body.classList.add("pt");window.print();document.body.classList.remove("pt")};
+rt();
+
+/* Feedback */
+var fr_=0;
+$("fst").innerHTML=[1,2,3,4,5].map(function(i){return'<button type="button" data-i="'+i+'" aria-pressed="false" aria-label="'+i+' star'+(i>1?"s":"")+'">★</button>'}).join("");
+function fbu(){var m=$("fm").value.trim(),n=$("fn").value.trim();
+var t="Feedback for Chandan Hub"+(fr_?"\nRating: "+fr_+"/5":"")+(n?"\nName: "+n:"")+"\n\n"+m;
+$("fsend").href="https://wa.me/918280775257?text="+encodeURIComponent(t)}
+$("fst").onclick=function(e){var b=e.target.closest("button");if(!b)return;fr_=+b.dataset.i;
+$("fst").querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",+x.dataset.i<=fr_)});fbu()};
+$("fm").oninput=fbu;$("fn").oninput=fbu;fbu();
+$("fsend").addEventListener("click",function(e){if(!$("fm").value.trim()&&!fr_){e.preventDefault();$("fh").textContent="Pick a rating or write a message first.";$("fm").focus()}else{$("fh").textContent="";fbu()}});
+
+draw();
+})();
+</script>
+</body>
+</html>
